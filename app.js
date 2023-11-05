@@ -44,12 +44,12 @@ function reorderTasks() {
   const tasks = Array.from(listInput.children);
   tasks.sort((a, b) => {
     const priorityValues = { 'priority-HIGH': 3, 'priority-MEDIUM': 2, 'priority-LOW': 1 };
-    const priorityA = priorityValues[a.classList[1]] || 0;
-    const priorityB = priorityValues[b.classList[1]] || 0;
+    const priorityA = (priorityValues[a.classList[3]] || 0);
+    const priorityB = (priorityValues[b.classList[1]] || 0);
     return priorityB - priorityA;
   });
 
-  listInput.innerHTML = "";
+  listInput.innerHTML = "";S
 
   tasks.forEach(task => listInput.appendChild(task));
 }
