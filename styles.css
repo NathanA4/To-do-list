@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'DejaVu Sans Mono', monospace;
+    box-sizing: border-box;
+}
+.container{
+    height: 100vh;
+    background: linear-gradient(70deg,#778899, #696969, #2F4F4F);
+    padding: 150px;
+}
+.todo{
+    width: 600px;
+    background: #FFFFF0;
+    margin: 10px auto 20px;
+    padding: 30px 10px 70px;
+    border-radius: 20px;
+}
+.todo h2{
+    padding: 0px 210px;
+    color: #2f4f4f;
+    display: flex;
+    align-items: center;
+    
+}
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #C0C0C0;
+    border-radius: 30px;
+    padding: 0px;
+    margin: 10px;
+}
+
+#input-text{
+    flex: auto;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    margin: 4px;
+    cursor: pointer;
+}
+
+#input-date{
+    width: 100px;
+    flex: auto;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    margin: 4px;
+    cursor: pointer;
+}
+
+button{
+    border: none;
+    outline: none;
+    background: #2F4F4F;
+    padding: 15px 30px;
+    color: black;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 15px;
+}
+
+button:hover{
+    background: #416b6b;
+}
+
+ul li{
+    list-style-type: none;
+    font-size: 15px;
+    padding: 6px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+ul li span{
+    background: #cfcdcd;
+    padding: 0px 10px;
+    color: black;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+ul li span:hover{
+    background: rgb(197, 197, 197) ;
+}
+
+ul li.checked {
+    text-decoration: line-through;
+}
+
+ul li span.checked {
+    text-decoration: none;
+}
+
+#priority{
+    width: 0px;
+    flex: auto;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 12px;
+    margin: 4px;
+    cursor: pointer;
+}
+.priority-High{
+    color: #DC143C;
+}
+.priority-Medium{
+    color: #FF7F50;
+}
+.priority-Low{
+    color: #00FF00;
+}
