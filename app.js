@@ -16,6 +16,7 @@ function addTask() {
     li.classList.add('priority-' + priorityInput.value);
 
     listInput.appendChild(li);
+    reorderTasks();
   } else {
     alert("Enter All The Elements!");
   }
@@ -39,12 +40,27 @@ listInput.addEventListener(
   false
 );
 
+function reorderTasks() {
+  const tasks = Array.from(listInput.children);
+  tasks.sort((a, b) => {
+    const priorityValues = { 'priority-HIGH': 3, 'priority-MEDIUM': 2, 'priority-LOW': 1 };
+    const priorityA = priorityValues[a.classList[1]] || 0;
+    const priorityB = priorityValues[b.classList[1]] || 0;
+    return priorityB - priorityA;
+  });
+
+  listInput.innerHTML = "";
+
+  tasks.forEach(task => listInput.appendChild(task));
+}
+reorderTasks();
+
 function showTask() {
   listInput.innerHTML = localStorage.getItem("data");
+  reorderTasks(); 
 }
 showTask();
 
 function saveLocal() {
   localStorage.setItem("data", listInput.innerHTML);
 }
-
