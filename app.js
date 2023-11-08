@@ -1,13 +1,13 @@
 const boxInput = document.getElementById("input-text");
 const boxInputDate = document.getElementById("input-date");
 const listInput = document.getElementById("container-list");
-const priorityInput = document.getElementById("priority")
+const priorityInput = document.getElementById("priority");
 let li;
 
 function addTask() {
   if (boxInput.value !== "" && boxInputDate.value !== "" && priorityInput.value !== "") {
     li = document.createElement("li");
-    li.innerHTML = boxInput.value + "\u00A0\u00A0\u00A0" + boxInputDate.value;
+    li.innerHTML = boxInput.value + "\u00A0\u00A0\u00A0" + boxInputDate.value + "\u00A0\u00A0\u00A0" + priorityInput.value;
 
     const span = document.createElement("span");
     span.innerHTML = "delete";
@@ -16,7 +16,8 @@ function addTask() {
     li.classList.add('priority-' + priorityInput.value);
 
     listInput.appendChild(li);
-    reorderTasks();
+
+
   } else {
     alert("Enter All The Elements!");
   }
@@ -24,6 +25,7 @@ function addTask() {
   boxInput.value = "";
   boxInputDate.value = "";
   saveLocal();
+  reorderTasks(li);
 }
 
 listInput.addEventListener(
@@ -40,27 +42,29 @@ listInput.addEventListener(
   false
 );
 
-function reorderTasks() {
-  const tasks = Array.from(listInput.children);
+function reorderTasks(newTask) {
+  const tasks = Array.from(listInput.getElementsByTagName("li"));
+  tasks.push(newTask);
+
+  const priorityValues = { High: 1, Medium: 2, Low: 3 };
   tasks.sort((a, b) => {
-    const priorityValues = { 'priority-HIGH': 3, 'priority-MEDIUM': 2, 'priority-LOW': 1 };
-    const priorityA = (priorityValues[a.classList[3]] || 0);
-    const priorityB = (priorityValues[b.classList[1]] || 0);
-    return priorityB - priorityA;
+    const priorityA = priorityValues[a.classList[0].split('-')[1]];
+    const priorityB = priorityValues[b.classList[0].split('-')[1]];
+    return priorityA - priorityB;
   });
 
-  listInput.innerHTML = "";S
+  listInput.innerHTML = "";
 
   tasks.forEach(task => listInput.appendChild(task));
 }
-reorderTasks();
+
 
 function showTask() {
   listInput.innerHTML = localStorage.getItem("data");
-  reorderTasks(); 
 }
 showTask();
 
 function saveLocal() {
   localStorage.setItem("data", listInput.innerHTML);
 }
+reorderTasks();
